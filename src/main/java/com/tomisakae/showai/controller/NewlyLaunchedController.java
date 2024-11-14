@@ -9,7 +9,7 @@ import com.tomisakae.showai.model.NewlyLaunched;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/newly-launched")
+@RequestMapping(value = "/api/newly-launched", produces = "application/json;charset=UTF-8")
 public class NewlyLaunchedController {
 
     @Autowired

@@ -19,6 +19,7 @@ public class AiTool {
     
     private String name;
     private String description;
+    private String link_ai_tool;
     
     @ElementCollection
     private List<String> tags;
