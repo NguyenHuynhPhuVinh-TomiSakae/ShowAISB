@@ -7,7 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
@@ -19,6 +19,8 @@ public class AiTool {
     
     private String name;
     private String description;
+    
+    @JsonProperty("link_ai_tool")
     private String link_ai_tool;
     
     @ElementCollection
