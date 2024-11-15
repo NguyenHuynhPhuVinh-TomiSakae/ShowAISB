@@ -1,5 +1,6 @@
 package com.tomisakae.showai.service;
 
+import com.tomisakae.showai.model.AiTool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -9,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import com.tomisakae.showai.model.NewlyLaunched;
 import com.tomisakae.showai.repository.NewlyLaunchedRepository;
 import lombok.extern.slf4j.Slf4j;
+import com.tomisakae.showai.dto.AiToolPageResponse;
 
 import java.util.List;
 
@@ -23,8 +25,17 @@ public class NewlyLaunchedService {
         return repository.save(newlyLaunched);
     }
     
-    public Page<NewlyLaunched> getAllNewlyLaunched(Pageable pageable) {
-        return repository.findAll(pageable);
+    public AiToolPageResponse getAllNewlyLaunched(Pageable pageable) {
+        Page<AiTool> aiToolPage = repository.findAllAiTools(pageable);
+        
+        AiToolPageResponse response = new AiToolPageResponse();
+        response.setContent(aiToolPage.getContent());
+        response.setTotalPages(aiToolPage.getTotalPages());
+        response.setTotalElements(aiToolPage.getTotalElements());
+        response.setPageNumber(aiToolPage.getNumber());
+        response.setPageSize(aiToolPage.getSize());
+        
+        return response;
     }
     
     public List<NewlyLaunched> getAllNewlyLaunchedWithoutPaging() {

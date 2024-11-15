@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.tomisakae.showai.service.NewlyLaunchedService;
 import com.tomisakae.showai.model.NewlyLaunched;
+import com.tomisakae.showai.dto.AiToolPageResponse;
 
 import java.util.List;
 
@@ -25,8 +26,8 @@ public class NewlyLaunchedController {
     }
     
     @GetMapping
-    public ResponseEntity<Page<NewlyLaunched>> getAllNewlyLaunched(
-            @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
+    public ResponseEntity<AiToolPageResponse> getAllNewlyLaunched(
+            @PageableDefault(size = 10) Pageable pageable) {
         return ResponseEntity.ok(service.getAllNewlyLaunched(pageable));
     }
     
