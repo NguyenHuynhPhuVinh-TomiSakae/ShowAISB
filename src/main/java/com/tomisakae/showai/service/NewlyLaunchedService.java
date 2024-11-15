@@ -1,6 +1,8 @@
 package com.tomisakae.showai.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +23,11 @@ public class NewlyLaunchedService {
         return repository.save(newlyLaunched);
     }
     
-    public List<NewlyLaunched> getAllNewlyLaunched() {
+    public Page<NewlyLaunched> getAllNewlyLaunched(Pageable pageable) {
+        return repository.findAll(pageable);
+    }
+    
+    public List<NewlyLaunched> getAllNewlyLaunchedWithoutPaging() {
         return repository.findAll();
     }
 }
